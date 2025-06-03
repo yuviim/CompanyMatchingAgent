@@ -1,0 +1,22 @@
+# Ignore virtual environments
+venv/
+.env/
+.CIA/
+CIA/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# VSCode
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db

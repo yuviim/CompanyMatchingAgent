@@ -1,0 +1,27 @@
+import streamlit as st
+from crew.crew import run_pipeline
+
+st.set_page_config(page_title="Company Match Agent", layout="wide")
+
+st.title("🔍 Company Matching Agent")
+st.markdown("Enter a company name to extract their offerings and find matching services from your company.")
+
+company_name = st.text_input("🏢 Company Name", placeholder="e.g., Infosys, Salesforce, TCS")
+
+if st.button("Run Analysis") and company_name.strip():
+    with st.spinner("🔎 Running company analysis and matching..."):
+        try:
+            result = run_pipeline(company_name.strip())
+
+            st.success("✅ Match report generated successfully!")
+
+            st.subheader("📘 Company Introduction & Offerings")
+            st.markdown(result["company_intro"])
+
+            st.subheader("📊 Match Report: Services You Can Offer")
+            st.markdown(result["matching_report"])
+
+        except Exception as e:
+            st.error(f"❌ Error: {str(e)}")
+else:
+    st.info("Please enter a valid company name to proceed.")

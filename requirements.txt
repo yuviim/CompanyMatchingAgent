@@ -4,4 +4,4 @@ openai
 langchain
 tavily-python
 python-dotenv
-chromadb
+

@@ -1,4 +1,10 @@
 import streamlit as st
+
+# Override sqlite3 with pysqlite3 to fix sqlite version issues on Streamlit Cloud
+import sys
+import pysqlite3
+sys.modules['sqlite3'] = pysqlite3
+
 from crew.crew import run_pipeline
 
 st.set_page_config(page_title="Company Match Agent", layout="wide")

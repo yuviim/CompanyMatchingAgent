@@ -2,6 +2,9 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+from utils.chroma_client import get_chroma_client
+chroma_client = get_chroma_client()
+
 from crewai import Crew, Task
 from agents.company_research_agent import company_research_agent
 from agents.service_match_agent import service_match_agent
@@ -35,14 +38,26 @@ def run_pipeline(company_name):
         agent=company_research_agent
     )
 
-    # Step 4: Matching task – suggest what we can offer
+    # Step 4: Matching task – suggest what we can offer with detailed justification
     match_task = Task(
         description=f"""
-        Based on the findings and our services below, recommend relevant services we can offer and why:
-        
+        Based on the research findings and the list of services we offer below,
+        recommend relevant services we can provide to this company.
+
+        For each recommended service, please provide:
+
+        1. Current Company’s Issue: Describe the company's pain points or challenges.
+        2. Our Potential Solution: Which of our services address that issue.
+        3. Justification: Why this solution is a good fit and how it benefits the company.
+
         Our Services:\n{services}
         """,
-        expected_output="A structured match report with specific services and justifications.",
+        expected_output="""
+        A structured match report that clearly outlines for each service:
+        - Current Company’s Issue
+        - Our Potential Solution
+        - Justification for the recommendation
+        """,
         agent=service_match_agent,
         context=[research_task]
     )

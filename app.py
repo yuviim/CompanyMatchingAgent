@@ -7,9 +7,9 @@ sys.modules['sqlite3'] = pysqlite3
 
 from crew.crew import run_pipeline
 
-st.set_page_config(page_title="Company Match Agent", layout="wide")
+st.set_page_config(page_title="MarketBridge | Intelligent Market Matching", layout="wide")
 
-st.title("🔍 Company Matching Agent")
+st.title("🔍 MarketBridge — Insights That Connect")
 st.markdown("Enter a company name to extract their offerings and find matching services from your company.")
 
 company_name = st.text_input("🏢 Company Name", placeholder="e.g., Infosys, Salesforce, TCS")

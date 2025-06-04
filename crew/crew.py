@@ -2,8 +2,6 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from utils.chroma_client import get_chroma_client
-chroma_client = get_chroma_client()
 
 from crewai import Crew, Task
 from agents.company_research_agent import company_research_agent

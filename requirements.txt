@@ -5,3 +5,4 @@ langchain
 tavily-python
 python-dotenv
 pysqlite3-binary
+beautifulsoup4
